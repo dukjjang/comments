@@ -97,8 +97,11 @@ export const commentSlice = createSlice({
     });
 
     builder.addCase(postComment.fulfilled, (state) => {
-      state.currentPage = 0;
       state.inputValues = DEFAULT_INPUT_VALUES;
+      state.currentPage = 0;
+      state.currentSection = 1;
+      state.firstPage = 1;
+      state.lastPage = 5;
     });
 
     builder.addCase(putComment.fulfilled, (state, action) => {

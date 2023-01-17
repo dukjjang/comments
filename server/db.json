@@ -9,10 +9,10 @@
     },
     {
       "id": 2,
-      "profile_url": "https://picsum.photos/id/2/50/50",
-      "author": "abc_2",
       "content": "막히면 대답은 빨리 해주나요",
-      "createdAt": "2022-03-02"
+      "author": "abc_2",
+      "createdAt": "2022-03-02",
+      "profile_url": "https://picsum.photos/id/2/50/50"
     },
     {
       "id": 3,
@@ -190,11 +190,25 @@
       "createdAt": "2023-01-18"
     },
     {
-      "id": "571.156",
-      "author": "진지2",
-      "content": "asdfasdfasdf",
+      "id": "368.385",
+      "author": "도기",
+      "content": "adfdfaf",
       "profile_url": "https://picsum.photos/id/1/50/50",
-      "createdAt": "2023-01-23"
+      "createdAt": "2022-11-22"
+    },
+    {
+      "id": "16.437",
+      "author": "도기5555",
+      "content": "aasdfasdf",
+      "profile_url": "https://picsum.photos/id/1/50/50",
+      "createdAt": "2023-01-19"
+    },
+    {
+      "id": "443.717",
+      "author": "진현덕5555",
+      "content": "asdf",
+      "profile_url": "https://picsum.photos/id/1/50/50",
+      "createdAt": "2023-01-20"
     }
   ]
 }
