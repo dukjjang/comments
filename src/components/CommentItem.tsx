@@ -7,7 +7,7 @@ type Props = {
 const CommentItem = ({ comment }: Props) => {
   const { author, content, profile_url, createdAt } = comment;
   return (
-    <li className=" p-3 px-5 border-b  ">
+    <li className="w-full py-1 px-5 border-b  ">
       <div className="flex">
         <img className=" rounded-full mr-3" src={profile_url} alt="profile" />
         <h2 className="flex items-center ">{author}</h2>

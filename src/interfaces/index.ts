@@ -5,3 +5,11 @@ export interface Comment {
   content: string;
   createdAt: string;
 }
+
+export interface InputValues {
+  [key: string]: string;
+  author: string;
+  profile_url: string;
+  content: string;
+  createdAt: string;
+}

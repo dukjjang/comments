@@ -1,6 +1,6 @@
 const Pagination = () => {
   return (
-    <ul className="flex p-2 lg:p-4 gap-3 justify-center">
+    <ul className="flex p-2 text-sm gap-3 justify-center">
       <li>
         <button className="btn">1</button>
       </li>

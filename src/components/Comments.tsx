@@ -15,9 +15,9 @@ const Comments = () => {
   }, []);
 
   return (
-    <section className=" p-1 bg-white flex flex-col justify-between h-full w-full lg:w-[800px] rounded-t-lg">
-      <ul className=" w-full overflow-scroll   ">
-        {comments.slice(0, 5).map((comment, idx) => (
+    <section className=" p-1 bg-white flex flex-col justify-between h-full w-full rounded-lg">
+      <ul className=" w-full overflow-auto scrollbar-hide">
+        {comments.slice(0, 8).map((comment, idx) => (
           <CommentItem key={idx} comment={comment} />
         ))}
       </ul>
