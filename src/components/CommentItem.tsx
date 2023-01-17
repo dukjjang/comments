@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Comment } from "../interfaces";
-import { AppDispatch } from "../store";
+import { AppDispatch, RootState } from "../store";
 import { deleteComment, editComment } from "../store/commentSlice";
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
 };
 
 const CommentItem = ({ comment }: Props) => {
+  const [isLoading, setIsLoading] = useState(true);
   const { id, author, content, profile_url, createdAt } = comment;
   const dispatch = useDispatch<AppDispatch>();
 
@@ -18,10 +20,22 @@ const CommentItem = ({ comment }: Props) => {
   const handleDelete = () => {
     dispatch(deleteComment(id));
   };
+
+  const handleOnLoad = () => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  };
   return (
-    <li className="w-full py-1 px-5 border-b ">
+    <li className={`${isLoading && "blur-sm"} w-full py-1 px-5 border-b `}>
       <div className="flex">
-        <img className=" rounded-full mr-3" src={profile_url} alt="profile" />
+        <img
+          onLoadStart={() => setIsLoading(true)}
+          onLoad={handleOnLoad}
+          className="rounded-full mr-3"
+          src={profile_url}
+          alt="profile"
+        />
         <h2 className="flex items-center w-full ">{author}</h2>
         <span className="w-full h-[30%] text-end ">{createdAt}</span>
       </div>

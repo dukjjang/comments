@@ -4,9 +4,9 @@ import axios from "axios";
 
 export interface CommentState {
   comments: Comment[];
-
   currentPage: number;
   inputValues: InputValues;
+  totalPage: number;
 }
 
 const BASE_URL = process.env.REACT_APP_API_URL;
@@ -21,15 +21,26 @@ const DEFAULT_INPUT_VALUES = {
 
 const initialState: CommentState = {
   comments: [],
-
   currentPage: 1,
   inputValues: DEFAULT_INPUT_VALUES,
+  totalPage: 1,
 };
+
+export const fetchTotalComments = createAsyncThunk(
+  "commentSlice/fetchTotalComments",
+  async () => {
+    const response = await axios.get(`${BASE_URL}/comments`);
+    return response.data;
+  }
+);
 
 export const fetchComments = createAsyncThunk(
   "commentSlice/fetchComments",
-  async () => {
-    const response = await axios.get(`${BASE_URL}/comments`);
+  async (currentPage: number) => {
+    if (currentPage === 0) currentPage = 1;
+    const response = await axios.get(
+      `${BASE_URL}/comments?_page=${currentPage}&_limit=4&_order=desc&_sort=createdAt`
+    );
     return response.data;
   }
 );
@@ -91,16 +102,25 @@ export const commentSlice = createSlice({
           createdAt: target?.createdAt,
         };
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
+    builder.addCase(fetchTotalComments.fulfilled, (state, action) => {
+      state.totalPage = Math.ceil(action.payload.length / 4);
+    });
+
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.comments = action.payload;
     });
+
     builder.addCase(postComment.fulfilled, (state, action) => {
-      state.comments.unshift(action.payload);
+      state.currentPage = 0;
       state.inputValues = DEFAULT_INPUT_VALUES;
     });
+
     builder.addCase(putComment.fulfilled, (state, action) => {
       const targetIndex = state.comments.findIndex(
         (comment) => comment.id === action.payload.id
@@ -108,8 +128,8 @@ export const commentSlice = createSlice({
       state.comments[targetIndex] = action.payload;
       state.inputValues = DEFAULT_INPUT_VALUES;
     });
+
     builder.addCase(deleteComment.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.comments = state.comments.filter(
         (comment) => comment.id !== action.payload
       );
@@ -117,6 +137,7 @@ export const commentSlice = createSlice({
   },
 });
 
-export const { setInputValues, editComment } = commentSlice.actions;
+export const { setInputValues, editComment, setCurrentPage } =
+  commentSlice.actions;
 
 export default commentSlice.reducer;
