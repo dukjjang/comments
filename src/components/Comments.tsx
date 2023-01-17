@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { SystemError } from "../interfaces";
 import { AppDispatch, RootState } from "../store";
 import {
   fetchComments,
@@ -23,11 +24,8 @@ const Comments = () => {
         await dispatch(fetchTotalComments()).unwrap();
         await dispatch(fetchComments(currentPage)).unwrap();
       } catch (error) {
-        if (error instanceof Error) {
-          alert(`데이터 요청에 실패하였습니다 ${error.message}`);
-        } else {
-          alert(`데이터 요청에 실패하였습니다 ${error}`);
-        }
+        const e = error as SystemError;
+        alert(`데이터 요청에 실패하였습니다 ${e.message}`);
       }
     })();
   }, [currentPage]);

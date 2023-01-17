@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Comment } from "../interfaces";
+import { Comment, SystemError } from "../interfaces";
 import { AppDispatch } from "../store";
 import { editComment } from "../store/comment/commentSlice";
 import { deleteComment } from "../store/comment/commentThunks";
@@ -18,8 +18,13 @@ const CommentItem = ({ comment }: Props) => {
     dispatch(editComment(id));
   };
 
-  const handleDelete = () => {
-    dispatch(deleteComment(id));
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteComment(id)).unwrap();
+    } catch (error) {
+      const e = error as SystemError;
+      alert(`삭제요청이 실패하였습니다 ${e.message}`);
+    }
   };
 
   const handleOnLoad = () => {

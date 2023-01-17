@@ -14,3 +14,8 @@ export interface InputValues {
   content: string;
   createdAt: string;
 }
+
+export interface SystemError {
+  code: string;
+  message: string;
+}
