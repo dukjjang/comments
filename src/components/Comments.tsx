@@ -18,8 +18,18 @@ const Comments = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchTotalComments());
-    dispatch(fetchComments(currentPage));
+    (async () => {
+      try {
+        await dispatch(fetchTotalComments()).unwrap();
+        await dispatch(fetchComments(currentPage)).unwrap();
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(`데이터 요청에 실패하였습니다 ${error.message}`);
+        } else {
+          alert(`데이터 요청에 실패하였습니다 ${error}`);
+        }
+      }
+    })();
   }, [currentPage]);
 
   return (

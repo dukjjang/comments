@@ -17,10 +17,19 @@ const CommentForm = () => {
     dispatch(setInputValues({ name: e.target.name, value: e.target.value }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (inputValues.id === -1) dispatch(postComment(inputValues));
-    else dispatch(putComment(inputValues));
+    try {
+      if (inputValues.id === -1)
+        await dispatch(postComment(inputValues)).unwrap();
+      else await dispatch(putComment(inputValues)).unwrap();
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(`데이터 요청에 실패하였습니다 ${error.message}`);
+      } else {
+        alert(`데이터 요청에 실패하였습니다 ${error}`);
+      }
+    }
   };
 
   return (
