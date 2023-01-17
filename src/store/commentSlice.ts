@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Comment } from "../interfaces/index";
+import { Comment, InputValues } from "../interfaces/index";
 import axios from "axios";
 
 export interface CommentState {
@@ -22,9 +22,16 @@ export const fetchComments = createAsyncThunk(
 
 export const postComment = createAsyncThunk(
   "commentSlice/postComment",
-  async () => {
+  async (inputValues: InputValues) => {
     const response = await axios.post(
-      `${process.env.REACT_APP_API_URL}/comments`
+      `${process.env.REACT_APP_API_URL}/comments`,
+      {
+        id: Math.random() * 100,
+        author: inputValues.author,
+        content: inputValues.content,
+        profile_url: "https://picsum.photos/id/1/50/50",
+        createdAt: inputValues.createdAt,
+      }
     );
     return response.data;
   }
@@ -39,7 +46,7 @@ export const commentSlice = createSlice({
       state.comments = action.payload;
     });
     builder.addCase(postComment.fulfilled, (state, action) => {
-      state.comments.push(action.payload);
+      state.comments.unshift(action.payload);
     });
   },
 });

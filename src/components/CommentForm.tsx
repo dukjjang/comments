@@ -1,8 +1,12 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useDispatch } from "react-redux";
 import { INPUTS } from "../constants/index";
 import { InputValues } from "../interfaces";
+import { AppDispatch } from "../store";
+import { postComment } from "../store/commentSlice";
 
 const CommentForm = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [inputValues, setInputValues] = useState<InputValues>({
     profile_url: "",
     author: "",
@@ -18,6 +22,7 @@ const CommentForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    dispatch(postComment(inputValues));
   };
 
   return (

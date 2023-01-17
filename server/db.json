@@ -153,6 +153,27 @@
       "author": "abc_22",
       "content": "주변에 React 개발자 있나요",
       "createdAt": "2022-03-22"
+    },
+    {
+      "id": 93.92672550534469,
+      "author": "진현덕",
+      "content": "asdfasdf",
+      "profile_url": "https://picsum.photos/id/1/50/50",
+      "createdAt": "2022-01-17"
+    },
+    {
+      "id": 59.02971341683887,
+      "author": "진현덕",
+      "content": "asdfasdf",
+      "profile_url": "https://picsum.photos/id/1/50/50",
+      "createdAt": "2022-01-17"
+    },
+    {
+      "id": 79.68176938140937,
+      "author": "jinji",
+      "content": "호이호이",
+      "profile_url": "https://picsum.photos/id/1/50/50",
+      "createdAt": "2023-01-13"
     }
   ]
 }
