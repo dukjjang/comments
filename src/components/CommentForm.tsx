@@ -1,23 +1,19 @@
-import { ChangeEvent, FormEvent, useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, FormEvent } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { INPUTS } from "../constants/index";
-import { InputValues } from "../interfaces";
-import { AppDispatch } from "../store";
-import { postComment } from "../store/commentSlice";
+import { AppDispatch, RootState } from "../store";
+import { postComment, setInputValues } from "../store/commentSlice";
 
 const CommentForm = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [inputValues, setInputValues] = useState<InputValues>({
-    profile_url: "",
-    author: "",
-    content: "",
-    createdAt: "",
-  });
+  const inputValues = useSelector(
+    (state: RootState) => state.comment.inputValues
+  );
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setInputValues({ ...inputValues, [e.target.name]: e.target.value });
+    dispatch(setInputValues({ name: e.target.name, value: e.target.value }));
   };
 
   const handleSubmit = (e: FormEvent) => {

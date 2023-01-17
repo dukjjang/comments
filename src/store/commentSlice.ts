@@ -4,10 +4,17 @@ import axios from "axios";
 
 export interface CommentState {
   comments: Comment[];
+  inputValues: InputValues;
 }
 
 const initialState: CommentState = {
   comments: [],
+  inputValues: {
+    profile_url: "",
+    author: "",
+    content: "",
+    createdAt: "",
+  },
 };
 
 export const fetchComments = createAsyncThunk(
@@ -40,7 +47,11 @@ export const postComment = createAsyncThunk(
 export const commentSlice = createSlice({
   name: "comment",
   initialState,
-  reducers: {},
+  reducers: {
+    setInputValues(state, action) {
+      state.inputValues[action.payload.name] = action.payload.value;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.comments = action.payload;
@@ -50,5 +61,7 @@ export const commentSlice = createSlice({
     });
   },
 });
+
+export const { setInputValues } = commentSlice.actions;
 
 export default commentSlice.reducer;
