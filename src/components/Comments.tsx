@@ -1,7 +1,10 @@
-import { Fragment, RefObject, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../store";
-import { fetchComments, fetchTotalComments } from "../store/commentSlice";
+import {
+  fetchComments,
+  fetchTotalComments,
+} from "../store/comment/commentThunks";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";

@@ -2,7 +2,8 @@ import { ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { INPUTS } from "../constants/index";
 import { AppDispatch, RootState } from "../store";
-import { postComment, putComment, setInputValues } from "../store/commentSlice";
+import { setInputValues } from "../store/comment/commentSlice";
+import { postComment, putComment } from "../store/comment/commentThunks";
 
 const CommentForm = () => {
   const dispatch = useDispatch<AppDispatch>();

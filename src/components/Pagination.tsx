@@ -1,25 +1,34 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { setCurrentPage } from "../store/commentSlice";
+import { setCurrentPage, setPageSection } from "../store/comment/commentSlice";
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const totalPageNumber = useSelector(
-    (state: RootState) => state.comment.totalPage
-  );
-  const pageButtons = new Array(totalPageNumber).fill(0);
+  const totalPage = useSelector((state: RootState) => state.comment.totalPage);
+  const lastPage = useSelector((state: RootState) => state.comment.lastPage);
+  const firstPage = useSelector((state: RootState) => state.comment.firstPage);
+
+  const pageButtons = [...Array(totalPage + 1)].map((_, i) => i);
 
   return (
     <ul className="flex p-2 text-sm gap-3 justify-center">
-      {pageButtons.map((_, idx) => (
+      <button
+        onClick={() => dispatch(setPageSection("prev"))}
+        className="btn"
+      >{`<`}</button>
+      {pageButtons.slice(firstPage, lastPage + 1).map((pageNumber, idx) => (
         <button
-          onClick={() => dispatch(setCurrentPage(idx + 1))}
+          onClick={() => dispatch(setCurrentPage(pageNumber))}
           key={idx}
           className="btn"
         >
-          {idx + 1}
+          {pageNumber}
         </button>
       ))}
+      <button
+        onClick={() => dispatch(setPageSection("next"))}
+        className="btn"
+      >{`>`}</button>
     </ul>
   );
 };
