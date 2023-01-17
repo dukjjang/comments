@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { INPUTS } from "../constants/index";
 import { AppDispatch, RootState } from "../store";
-import { postComment, setInputValues } from "../store/commentSlice";
+import { postComment, putComment, setInputValues } from "../store/commentSlice";
 
 const CommentForm = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +18,8 @@ const CommentForm = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(postComment(inputValues));
+    if (inputValues.id === -1) dispatch(postComment(inputValues));
+    else dispatch(putComment(inputValues));
   };
 
   return (

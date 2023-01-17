@@ -7,7 +7,8 @@ export interface Comment {
 }
 
 export interface InputValues {
-  [key: string]: string;
+  [key: string]: string | number;
+  id: number;
   author: string;
   profile_url: string;
   content: string;

@@ -1,4 +1,7 @@
+import { useDispatch } from "react-redux";
 import { Comment } from "../interfaces";
+import { AppDispatch } from "../store";
+import { deleteComment, editComment } from "../store/commentSlice";
 
 type Props = {
   comment: Comment;
@@ -6,10 +9,17 @@ type Props = {
 
 const CommentItem = ({ comment }: Props) => {
   const { id, author, content, profile_url, createdAt } = comment;
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    dispatch(editComment(id));
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteComment(id));
+  };
   return (
-    <li className="w-full py-1 px-5 border-b  ">
+    <li className="w-full py-1 px-5 border-b ">
       <div className="flex">
         <img className=" rounded-full mr-3" src={profile_url} alt="profile" />
         <h2 className="flex items-center w-full ">{author}</h2>
@@ -17,10 +27,10 @@ const CommentItem = ({ comment }: Props) => {
       </div>
       <p> {content}</p>
       <div className="flex w-full justify-end">
-        <button type="button" onClick={handleClick} className="btn">
+        <button onClick={handleClick} type="button" className="btn">
           수정
         </button>
-        <button type="button" className="btn">
+        <button onClick={handleDelete} type="button" className="btn">
           삭제
         </button>
       </div>
