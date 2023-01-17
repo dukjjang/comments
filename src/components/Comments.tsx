@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
 
@@ -11,6 +12,7 @@ const Comments = () => {
         <CommentItem />
       </ul>
       <Pagination />
+      <CommentForm />
     </Fragment>
   );
 };

@@ -14,6 +14,9 @@
     @apply border px-3 py-1 rounded-lg shadow-xl;
   }
   .pagiBtn {
-    @apply px-3 py-1 border shadow-xl;
+    @apply px-3 py-1 border rounded-lg shadow-xl;
+  }
+  .input {
+    @apply border px-2 rounded-md border-gray-400;
   }
 }

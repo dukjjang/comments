@@ -2,19 +2,19 @@ const Pagination = () => {
   return (
     <ul className="bg-white flex p-4 gap-3 justify-center">
       <li>
-        <button className="pagiBtn">1</button>
+        <button className="btn">1</button>
       </li>
       <li>
-        <button className="pagiBtn">2</button>
+        <button className="btn">2</button>
       </li>
       <li>
-        <button className="pagiBtn">3</button>
+        <button className="btn">3</button>
       </li>
       <li>
-        <button className="pagiBtn">4</button>
+        <button className="btn">4</button>
       </li>
       <li>
-        <button className="pagiBtn">5</button>
+        <button className="btn">5</button>
       </li>
     </ul>
   );
