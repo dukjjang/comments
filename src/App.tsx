@@ -1,10 +1,11 @@
+import { Fragment } from "react";
 import Home from "./pages/Home";
 
 function App() {
   return (
-    <div>
+    <Fragment>
       <Home />
-    </div>
+    </Fragment>
   );
 }
 

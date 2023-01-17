@@ -1,19 +1,31 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../store";
+import { fetchComments } from "../store/commentSlice";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
 
 const Comments = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const comments = useSelector((state: RootState) => state.comment.comments);
+
+  useEffect(() => {
+    dispatch(fetchComments());
+  }, []);
+
   return (
-    <Fragment>
-      <ul className="bg-white">
-        <CommentItem />
-        <CommentItem />
-        <CommentItem />
+    <section className=" p-1 bg-white flex flex-col justify-between h-full w-full lg:w-[800px] rounded-t-lg">
+      <ul className=" w-full overflow-scroll   ">
+        {comments.slice(0, 5).map((comment, idx) => (
+          <CommentItem key={idx} comment={comment} />
+        ))}
       </ul>
-      <Pagination />
-      <CommentForm />
-    </Fragment>
+      <div className="bg-neutral-100 h-fit ">
+        <Pagination />
+        <CommentForm />
+      </div>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@ import { INPUTS } from "../constants/index";
 
 const CommentForm = () => {
   return (
-    <form className="flex flex-col p-5 gap-2 bg-white">
+    <form className="flex flex-col p-1 lg:p-4 gap-2">
       {INPUTS.map((input) => {
         if (input.name === "content")
           return <textarea key={input.name} className="input" {...input} />;
