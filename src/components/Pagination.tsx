@@ -4,6 +4,9 @@ import { setCurrentPage, setPageSection } from "../store/comment/commentSlice";
 
 const Pagination = () => {
   const dispatch = useDispatch();
+  const currentPage = useSelector(
+    (state: RootState) => state.comment.currentPage
+  );
   const totalPage = useSelector((state: RootState) => state.comment.totalPage);
   const lastPage = useSelector((state: RootState) => state.comment.lastPage);
   const firstPage = useSelector((state: RootState) => state.comment.firstPage);
@@ -15,6 +18,7 @@ const Pagination = () => {
   );
 
   const pageButtons = [...Array(totalPage + 1)].map((_, i) => i);
+  console.log(currentPage);
 
   return (
     <ul className="flex p-2 text-sm gap-3 justify-center">
@@ -27,7 +31,7 @@ const Pagination = () => {
         <button
           onClick={() => dispatch(setCurrentPage(pageNumber))}
           key={idx}
-          className="btn "
+          className={`${currentPage === pageNumber && "bg-slate-400"} btn `}
         >
           {pageNumber}
         </button>

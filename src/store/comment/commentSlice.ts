@@ -69,9 +69,13 @@ export const commentSlice = createSlice({
         state.totalSection > state.currentSection
       ) {
         state.currentSection++;
+        console.log("section", state.currentSection);
+        state.currentPage = (state.currentSection - 1) * state.pageCount + 1;
       }
       if (action.payload === "prev" && state.currentSection > 1) {
         state.currentSection--;
+        state.currentPage =
+          state.currentSection * state.pageCount - (state.pageCount - 1);
       }
       state.lastPage =
         state.currentSection * state.pageCount > state.totalPage
@@ -94,6 +98,7 @@ export const commentSlice = createSlice({
 
     builder.addCase(fetchComments.fulfilled, (state, action) => {
       state.comments = action.payload;
+      if (state.currentPage === 0) state.currentPage = 1;
     });
 
     builder.addCase(postComment.fulfilled, (state) => {
