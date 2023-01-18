@@ -122,6 +122,7 @@ export const commentSlice = createSlice({
         (comment) => comment.id !== action.payload
       );
       state.currentPage = 0;
+      state.inputValues = DEFAULT_INPUT_VALUES;
     });
   },
 });
