@@ -13,6 +13,7 @@ export interface CommentState {
   pageCount: number;
   firstPage: number;
   lastPage: number;
+  countOfCommentInPage: number;
 }
 
 export const DEFAULT_INPUT_VALUES = {
@@ -33,6 +34,7 @@ export const initialState: CommentState = {
   pageCount: 5,
   firstPage: 1,
   lastPage: 5,
+  countOfCommentInPage: 8,
 };
 
 export const commentSlice = createSlice({

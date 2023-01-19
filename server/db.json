@@ -162,34 +162,6 @@
       "createdAt": "2022-03-02"
     },
     {
-      "id": 917,
-      "content": "123",
-      "author": "진현덕2222",
-      "createdAt": "2023-01-20",
-      "profile_url": "https://picsum.photos/id/5/50/50"
-    },
-    {
-      "id": 997,
-      "author": "진지",
-      "content": "123123",
-      "profile_url": "https://picsum.photos/id/5/50/50",
-      "createdAt": "2023-01-17"
-    },
-    {
-      "id": 919,
-      "author": "도기",
-      "content": "11111111",
-      "profile_url": "https://picsum.photos/id/1/50/50",
-      "createdAt": "2023-01-17"
-    },
-    {
-      "id": 796,
-      "author": "asdfasdf2222",
-      "content": "22222",
-      "profile_url": "https://picsum.photos/id/2/50/50",
-      "createdAt": "2023-01-17"
-    },
-    {
       "id": 121,
       "author": "1124124",
       "content": "aaaaa",
@@ -216,20 +188,6 @@
       "content": "325235235",
       "profile_url": "https://picsum.photos/id/2/50/50",
       "createdAt": "2023-01-17"
-    },
-    {
-      "id": 358,
-      "author": "도기",
-      "content": "asdfasdfasdfasdfasdf",
-      "profile_url": "https://picsum.photos/id/5/50/50",
-      "createdAt": "2023-01-23"
-    },
-    {
-      "id": 381,
-      "author": "asdfadsfasdfasf",
-      "content": "23123123123123123123",
-      "profile_url": "https://picsum.photos/id/4/50/50",
-      "createdAt": "2023-01-20"
     }
   ]
 }

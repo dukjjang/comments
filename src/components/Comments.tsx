@@ -5,18 +5,23 @@ import { useAppDispatch, useAppSelector } from "store";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
-import { fetchComments, fetchTotalComments } from "store/commentSlice/actions";
+import { fetchComments } from "store/commentSlice/actions";
 
 const Comments = () => {
   const dispatch = useAppDispatch();
   const comments = useAppSelector((state) => state.comment.comments);
   const commentsRef = useRef<HTMLUListElement>(null);
   const currentPage = useAppSelector((state) => state.comment.currentPage);
+  const countOfCommentInPage = useAppSelector(
+    (state) => state.comment.countOfCommentInPage
+  );
 
   useEffect(() => {
     (async () => {
       try {
-        await dispatch(fetchComments(currentPage)).unwrap();
+        await dispatch(
+          fetchComments({ currentPage, countOfCommentInPage })
+        ).unwrap();
       } catch (error) {
         const e = error as SystemError;
         alert(`데이터 요청에 실패하였습니다 ${e.message}`);

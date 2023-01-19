@@ -13,7 +13,9 @@ export const commentExtraReducers = (
 ) => {
   builder.addCase(fetchComments.fulfilled, (state, action) => {
     const { countOfComments, data } = action.payload;
-    const totalPageCount = Math.ceil(countOfComments / 4);
+    const totalPageCount = Math.ceil(
+      countOfComments / state.countOfCommentInPage
+    );
     state.comments = data;
     state.totalPage = totalPageCount;
     state.totalSection = Math.ceil(totalPageCount / 5);
