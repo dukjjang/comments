@@ -1,39 +1,14 @@
-import { ChangeEvent, FormEvent } from "react";
 import { INPUTS } from "constants/index";
-import { SystemError } from "interfaces";
-import { useAppDispatch } from "store";
-import { setInputValues } from "store/commentSlice";
-import { postComment, putComment } from "store/commentSlice/actions";
-import { useAppSelector } from "store";
+import { useCreateComment } from "hooks/useCreateComment";
 
 const CommentForm = () => {
-  const dispatch = useAppDispatch();
-  const inputValues = useAppSelector((state) => state.comment.inputValues);
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    dispatch(setInputValues({ name: e.target.name, value: e.target.value }));
-  };
-
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    try {
-      if (inputValues.id === -1)
-        await dispatch(postComment(inputValues)).unwrap();
-      else await dispatch(putComment(inputValues)).unwrap();
-    } catch (error) {
-      const e = error as SystemError;
-      alert(`데이터 요청에 실패하였습니다 ${e.message}`);
-    }
-  };
-
+  const { onChange, onSubmit, inputValues } = useCreateComment();
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col p-1 pb-4 gap-2">
+    <form onSubmit={onSubmit} className="flex flex-col p-1 pb-4 gap-2">
       {INPUTS.map((input) => {
         return input.name === "content" ? (
           <textarea
-            onChange={handleChange}
+            onChange={onChange}
             key={input.name}
             value={inputValues[input.name]}
             className="input"
@@ -41,7 +16,7 @@ const CommentForm = () => {
           />
         ) : (
           <input
-            onChange={handleChange}
+            onChange={onChange}
             value={inputValues[input.name]}
             key={input.name}
             className="input"
