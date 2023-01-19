@@ -1,16 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
-
-import { RootState } from "store";
+import { RootState, useAppDispatch, useAppSelector } from "store";
 import { nextPage, prevPage, setCurrentPage } from "store/comment/commentSlice";
 
 const Pagination = () => {
-  const dispatch = useDispatch();
-  const currentPage = useSelector(
-    (state: RootState) => state.comment.currentPage
-  );
-  const totalPage = useSelector((state: RootState) => state.comment.totalPage);
-  const firstPage = useSelector((state: RootState) => state.comment.firstPage);
-  const lastPage = useSelector((state: RootState) => state.comment.lastPage);
+  const dispatch = useAppDispatch();
+  const currentPage = useAppSelector((state) => state.comment.currentPage);
+  const totalPage = useAppSelector((state) => state.comment.totalPage);
+  const firstPage = useAppSelector((state) => state.comment.firstPage);
+  const lastPage = useAppSelector((state) => state.comment.lastPage);
 
   const pageButtons = [...Array(totalPage + 1)].map((_, i) => i);
 

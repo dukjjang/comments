@@ -1,16 +1,14 @@
 import { ChangeEvent, FormEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { INPUTS } from "constants/index";
 import { SystemError } from "interfaces";
-import { AppDispatch, RootState } from "store";
+import { useAppDispatch } from "store";
 import { setInputValues } from "store/comment/commentSlice";
 import { postComment, putComment } from "store/comment/commentActions";
+import { useAppSelector } from "store";
 
 const CommentForm = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const inputValues = useSelector(
-    (state: RootState) => state.comment.inputValues
-  );
+  const dispatch = useAppDispatch();
+  const inputValues = useAppSelector((state) => state.comment.inputValues);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

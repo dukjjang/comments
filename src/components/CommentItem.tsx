@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { Comment, SystemError } from "interfaces";
-import { AppDispatch } from "store";
+import { useAppDispatch } from "store";
 import { editComment } from "store/comment/commentSlice";
 import { deleteComment } from "store/comment/commentActions";
 
@@ -12,7 +11,7 @@ type Props = {
 const CommentItem = ({ comment }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const { id, author, content, profile_url, createdAt } = comment;
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     dispatch(editComment(id));

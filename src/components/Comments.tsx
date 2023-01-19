@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
 import { SystemError } from "interfaces";
-import { AppDispatch, RootState } from "store";
+import { useAppDispatch, useAppSelector } from "store";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
@@ -12,12 +11,10 @@ import {
 } from "store/comment/commentActions";
 
 const Comments = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const comments = useSelector((state: RootState) => state.comment.comments);
+  const dispatch = useAppDispatch();
+  const comments = useAppSelector((state) => state.comment.comments);
   const commentsRef = useRef<HTMLUListElement>(null);
-  const currentPage = useSelector(
-    (state: RootState) => state.comment.currentPage
-  );
+  const currentPage = useAppSelector((state) => state.comment.currentPage);
 
   useEffect(() => {
     (async () => {
