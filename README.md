@@ -1,6 +1,9 @@
 # ✉️ Comments
 
-- 댓글 조회,수정,삭제 서비스
+댓글 서비스
+
+
+
 
 ## 사용한 기술
 
@@ -8,6 +11,13 @@
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
     <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=white"/> 
         <img src="https://img.shields.io/badge/tailwindcss-18324F?style=for-the-badge&logo=tailwindcss&logoColor=white"/> 
+        
+        
+## 기술구현
+- 댓글 조회,수정,삭제 기능 구현
+- redux toolkit을 활용한 state management
+- redux thunk 미들웨어를 활용한 비동기 처리
+- pagination 기능구현 
 
 ---
 
