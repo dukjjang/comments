@@ -28,7 +28,7 @@ const Comments = () => {
         alert(`데이터 요청에 실패하였습니다 ${e.message}`);
       }
     })();
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   return (
     <section className=" p-1 bg-white flex flex-col justify-between h-full w-full rounded-lg">

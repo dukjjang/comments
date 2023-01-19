@@ -64,10 +64,7 @@ export const commentSlice = createSlice({
       state.currentPage = action.payload;
     },
     setPageSection(state, action) {
-      if (
-        action.payload === "next" &&
-        state.totalSection > state.currentSection
-      ) {
+      if (action.payload === "next") {
         state.currentSection++;
         console.log("section", state.currentSection);
         state.currentPage = (state.currentSection - 1) * state.pageCount + 1;

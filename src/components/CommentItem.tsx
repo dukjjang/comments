@@ -30,7 +30,7 @@ const CommentItem = ({ comment }: Props) => {
   const handleOnLoad = () => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000);
+    }, 300);
   };
   return (
     <li className={`${isLoading && "blur-sm"} w-full py-1 px-5 border-b `}>
