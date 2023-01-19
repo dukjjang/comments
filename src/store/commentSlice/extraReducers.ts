@@ -2,7 +2,6 @@ import { ActionReducerMapBuilder } from "@reduxjs/toolkit";
 import {
   deleteComment,
   fetchComments,
-  fetchTotalComments,
   postComment,
   putComment,
 } from "./actions";
@@ -12,20 +11,17 @@ import { DEFAULT_INPUT_VALUES } from ".";
 export const commentExtraReducers = (
   builder: ActionReducerMapBuilder<CommentState>
 ) => {
-  builder.addCase(fetchTotalComments.fulfilled, (state, action) => {
-    const totalPageNumber = Math.ceil(action.payload.length / 4);
-    state.totalPage = totalPageNumber;
-    state.totalSection = Math.ceil(totalPageNumber / 5);
-  });
-
   builder.addCase(fetchComments.fulfilled, (state, action) => {
-    state.comments = action.payload;
-    if (state.currentPage === 0) state.currentPage = 1;
+    const { countOfComments, data } = action.payload;
+    const totalPageCount = Math.ceil(countOfComments / 4);
+    state.comments = data;
+    state.totalPage = totalPageCount;
+    state.totalSection = Math.ceil(totalPageCount / 5);
   });
 
   builder.addCase(postComment.fulfilled, (state) => {
     state.inputValues = DEFAULT_INPUT_VALUES;
-    state.currentPage = 0;
+    state.currentPage = 1;
     state.currentSection = 1;
     state.firstPage = 1;
     state.lastPage = 5;
@@ -43,7 +39,7 @@ export const commentExtraReducers = (
     state.comments = state.comments.filter(
       (comment) => comment.id !== action.payload
     );
-    state.currentPage = 0;
+    state.currentPage = 1;
     state.inputValues = DEFAULT_INPUT_VALUES;
   });
 };

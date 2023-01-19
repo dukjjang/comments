@@ -16,14 +16,13 @@ const Comments = () => {
   useEffect(() => {
     (async () => {
       try {
-        await dispatch(fetchTotalComments()).unwrap();
         await dispatch(fetchComments(currentPage)).unwrap();
       } catch (error) {
         const e = error as SystemError;
         alert(`데이터 요청에 실패하였습니다 ${e.message}`);
       }
     })();
-  }, [currentPage, dispatch]);
+  }, [currentPage]);
 
   return (
     <section className=" p-1 bg-white flex flex-col justify-between h-full w-full rounded-lg">

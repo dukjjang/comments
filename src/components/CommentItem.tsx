@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { Comment, SystemError } from "interfaces";
-import { useAppDispatch } from "store";
-import { editComment } from "store/commentSlice";
-import { deleteComment } from "store/commentSlice/actions";
+import { useComment } from "hooks/useComment";
 
 type Props = {
   comment: Comment;
@@ -11,24 +9,7 @@ type Props = {
 const CommentItem = ({ comment }: Props) => {
   const [isLoading, setIsLoading] = useState(true);
   const { id, author, content, profile_url, createdAt } = comment;
-  const dispatch = useAppDispatch();
-
-  const handleClick = () => {
-    dispatch(editComment(id));
-  };
-
-  const handleDelete = async () => {
-    if (window.confirm("삭제 하시겠습니까?")) {
-      try {
-        await dispatch(deleteComment(id)).unwrap();
-      } catch (error) {
-        const e = error as SystemError;
-        alert(`삭제요청이 실패하였습니다 ${e.message}`);
-      }
-    } else {
-      return;
-    }
-  };
+  const { onDelete, onEdit } = useComment();
 
   const handleOnLoad = () => {
     setTimeout(() => {
@@ -50,10 +31,10 @@ const CommentItem = ({ comment }: Props) => {
       </div>
       <p> {content}</p>
       <div className="flex w-full justify-end">
-        <button onClick={handleClick} type="button" className="btn">
+        <button onClick={() => onEdit(id)} type="button" className="btn">
           수정
         </button>
-        <button onClick={handleDelete} type="button" className="btn">
+        <button onClick={() => onDelete(id)} type="button" className="btn">
           삭제
         </button>
       </div>

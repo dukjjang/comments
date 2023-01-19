@@ -1,44 +1,36 @@
+import { usePagination } from "hooks/usePagination";
 import { RootState, useAppDispatch, useAppSelector } from "store";
 import { nextPage, prevPage, setCurrentPage } from "store/commentSlice";
 
 const Pagination = () => {
   const dispatch = useAppDispatch();
-  const currentPage = useAppSelector((state) => state.comment.currentPage);
-  const totalPage = useAppSelector((state) => state.comment.totalPage);
-  const firstPage = useAppSelector((state) => state.comment.firstPage);
-  const lastPage = useAppSelector((state) => state.comment.lastPage);
 
-  const pageButtons = [...Array(totalPage + 1)].map((_, i) => i);
-
-  const handlePageButtons = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const target = e.target as HTMLButtonElement;
-    if (target.name === "prev") dispatch(prevPage());
-    if (target.name === "next") dispatch(nextPage());
-  };
+  const { buttons, moveNextPage, movePrevPage, selected, isButtonDisabled } =
+    usePagination();
 
   return (
     <ul className="flex p-2 text-sm gap-3 justify-center">
       <button
         type="button"
         name="prev"
-        disabled={currentPage < 2}
-        onClick={handlePageButtons}
+        disabled={isButtonDisabled("prev")}
+        onClick={movePrevPage}
         className="btn bg-gray-300 disabled:text-gray-300"
       >{`<`}</button>
-      {pageButtons.slice(firstPage, lastPage + 1).map((pageNumber, idx) => (
+      {buttons.map((page, idx) => (
         <button
-          onClick={() => dispatch(setCurrentPage(pageNumber))}
+          onClick={() => dispatch(setCurrentPage(page))}
           key={idx}
-          className={`${currentPage === pageNumber && "bg-slate-300"} btn `}
+          className={`${selected(page)} btn `}
         >
-          {pageNumber}
+          {page}
         </button>
       ))}
       <button
         type="button"
         name="next"
-        disabled={currentPage === totalPage}
-        onClick={handlePageButtons}
+        disabled={isButtonDisabled("next")}
+        onClick={moveNextPage}
         className="btn bg-gray-300 disabled:text-gray-300"
       >{`>`}</button>
     </ul>

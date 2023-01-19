@@ -1,8 +1,8 @@
 import { INPUTS } from "constants/index";
-import { useCreateComment } from "hooks/useCreateComment";
+import { useComment } from "hooks/useComment";
 
 const CommentForm = () => {
-  const { onChange, onSubmit, inputValues } = useCreateComment();
+  const { onChange, onSubmit, inputValues } = useComment();
   return (
     <form onSubmit={onSubmit} className="flex flex-col p-1 pb-4 gap-2">
       {INPUTS.map((input) => {

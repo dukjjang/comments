@@ -14,11 +14,11 @@ export const fetchTotalComments = createAsyncThunk(
 export const fetchComments = createAsyncThunk(
   "commentSlice/fetchComments",
   async (currentPage: number) => {
-    if (currentPage === 0) currentPage = 1;
     const response = await axios.get(
       `${BASE_URL}/comments?_page=${currentPage}&_limit=4&_order=desc&_sort=createdAt`
     );
-    return response.data;
+    const countOfComments = response.headers["x-total-count"];
+    return { data: response.data, countOfComments: Number(countOfComments) };
   }
 );
 
