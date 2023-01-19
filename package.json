@@ -27,7 +27,9 @@
     "server": "json-server --watch server/db.json --port 4000",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -50,5 +52,6 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "tailwindcss": "^3.2.4"
-  }
+  },
+  "homepage": "https://dukjjang.github.io/comments"
 }
