@@ -25,12 +25,12 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "node server",
-    "start:dev": "cross-env NODE_PATH=src react-scripts start",
+    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "react-scripts start",
+    "server": "json-server --watch server/db.json --port 4000",
     "build": "cross-env NODE_PATH=src react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": " NODE_PATH=src npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -53,6 +53,5 @@
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "tailwindcss": "^3.2.4"
-  },
-  "proxy": "http://localhost:3001"
+  }
 }
