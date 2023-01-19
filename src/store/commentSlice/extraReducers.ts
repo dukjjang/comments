@@ -5,9 +5,9 @@ import {
   fetchTotalComments,
   postComment,
   putComment,
-} from "./commentActions";
-import { CommentState } from "./commentSlice";
-import { DEFAULT_INPUT_VALUES } from "./commentSlice";
+} from "./actions";
+import { CommentState } from ".";
+import { DEFAULT_INPUT_VALUES } from ".";
 
 export const commentExtraReducers = (
   builder: ActionReducerMapBuilder<CommentState>

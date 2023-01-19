@@ -1,5 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { CommentState } from "./commentSlice";
+import { CommentState } from ".";
 
 export const commentReducers = {
   setInputValues(

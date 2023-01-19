@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent } from "react";
 import { INPUTS } from "constants/index";
 import { SystemError } from "interfaces";
 import { useAppDispatch } from "store";
-import { setInputValues } from "store/comment/commentSlice";
-import { postComment, putComment } from "store/comment/commentActions";
+import { setInputValues } from "store/commentSlice";
+import { postComment, putComment } from "store/commentSlice/actions";
 import { useAppSelector } from "store";
 
 const CommentForm = () => {

@@ -5,10 +5,7 @@ import { useAppDispatch, useAppSelector } from "store";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
-import {
-  fetchComments,
-  fetchTotalComments,
-} from "store/comment/commentActions";
+import { fetchComments, fetchTotalComments } from "store/commentSlice/actions";
 
 const Comments = () => {
   const dispatch = useAppDispatch();

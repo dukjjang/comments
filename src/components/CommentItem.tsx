@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Comment, SystemError } from "interfaces";
 import { useAppDispatch } from "store";
-import { editComment } from "store/comment/commentSlice";
-import { deleteComment } from "store/comment/commentActions";
+import { editComment } from "store/commentSlice";
+import { deleteComment } from "store/commentSlice/actions";
 
 type Props = {
   comment: Comment;
@@ -18,11 +18,15 @@ const CommentItem = ({ comment }: Props) => {
   };
 
   const handleDelete = async () => {
-    try {
-      await dispatch(deleteComment(id)).unwrap();
-    } catch (error) {
-      const e = error as SystemError;
-      alert(`삭제요청이 실패하였습니다 ${e.message}`);
+    if (window.confirm("삭제 하시겠습니까?")) {
+      try {
+        await dispatch(deleteComment(id)).unwrap();
+      } catch (error) {
+        const e = error as SystemError;
+        alert(`삭제요청이 실패하였습니다 ${e.message}`);
+      }
+    } else {
+      return;
     }
   };
 

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Comment, InputValues } from "../../interfaces/index";
-import { commentReducers as reducers } from "./commentReducers";
+import { commentReducers as reducers } from "./reducers";
 import { commentExtraReducers as extraReducers } from "./extraReducers";
 
 export interface CommentState {

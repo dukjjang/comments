@@ -1,5 +1,5 @@
 import { RootState, useAppDispatch, useAppSelector } from "store";
-import { nextPage, prevPage, setCurrentPage } from "store/comment/commentSlice";
+import { nextPage, prevPage, setCurrentPage } from "store/commentSlice";
 
 const Pagination = () => {
   const dispatch = useAppDispatch();
