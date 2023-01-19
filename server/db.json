@@ -160,20 +160,6 @@
       "content": "adsfasdfasd2342342342",
       "profile_url": "https://picsum.photos/id/1/50/50",
       "createdAt": "2022-03-02"
-    },
-    {
-      "id": 614,
-      "author": "asdf",
-      "content": "43513135",
-      "profile_url": "https://picsum.photos/id/4/50/50",
-      "createdAt": "2023-01-17"
-    },
-    {
-      "id": 356,
-      "author": "222222",
-      "content": "333333333",
-      "profile_url": "https://picsum.photos/id/5/50/50",
-      "createdAt": "2023-01-17"
     }
   ]
 }
