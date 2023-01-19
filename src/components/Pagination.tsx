@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../store";
-import { setCurrentPage, setPageSection } from "../store/comment/commentSlice";
+
+import { RootState } from "store";
+import { nextPage, prevPage, setCurrentPage } from "store/comment/commentSlice";
 
 const Pagination = () => {
   const dispatch = useDispatch();
@@ -8,37 +9,40 @@ const Pagination = () => {
     (state: RootState) => state.comment.currentPage
   );
   const totalPage = useSelector((state: RootState) => state.comment.totalPage);
-  const lastPage = useSelector((state: RootState) => state.comment.lastPage);
   const firstPage = useSelector((state: RootState) => state.comment.firstPage);
-  const currentSection = useSelector(
-    (state: RootState) => state.comment.currentSection
-  );
-  const totalSection = useSelector(
-    (state: RootState) => state.comment.totalSection
-  );
+  const lastPage = useSelector((state: RootState) => state.comment.lastPage);
 
   const pageButtons = [...Array(totalPage + 1)].map((_, i) => i);
-  console.log(currentPage);
+
+  const handlePageButtons = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const target = e.target as HTMLButtonElement;
+    if (target.name === "prev") dispatch(prevPage());
+    if (target.name === "next") dispatch(nextPage());
+  };
 
   return (
     <ul className="flex p-2 text-sm gap-3 justify-center">
       <button
-        disabled={currentSection === 1 ? true : false}
-        onClick={() => dispatch(setPageSection("prev"))}
+        type="button"
+        name="prev"
+        disabled={currentPage < 2}
+        onClick={handlePageButtons}
         className="btn bg-gray-300 disabled:text-gray-300"
       >{`<`}</button>
       {pageButtons.slice(firstPage, lastPage + 1).map((pageNumber, idx) => (
         <button
           onClick={() => dispatch(setCurrentPage(pageNumber))}
           key={idx}
-          className={`${currentPage === pageNumber && "bg-slate-400"} btn `}
+          className={`${currentPage === pageNumber && "bg-slate-300"} btn `}
         >
           {pageNumber}
         </button>
       ))}
       <button
-        disabled={currentSection < totalSection ? false : true}
-        onClick={() => dispatch(setPageSection("next"))}
+        type="button"
+        name="next"
+        disabled={currentPage === totalPage}
+        onClick={handlePageButtons}
         className="btn bg-gray-300 disabled:text-gray-300"
       >{`>`}</button>
     </ul>

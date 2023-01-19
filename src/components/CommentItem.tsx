@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Comment, SystemError } from "../interfaces";
-import { AppDispatch } from "../store";
-import { editComment } from "../store/comment/commentSlice";
-import { deleteComment } from "../store/comment/commentThunks";
+import { Comment, SystemError } from "interfaces";
+import { AppDispatch } from "store";
+import { editComment } from "store/comment/commentSlice";
+import { deleteComment } from "store/comment/commentActions";
 
 type Props = {
   comment: Comment;

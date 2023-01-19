@@ -141,20 +141,6 @@
       "createdAt": "2022-01-17"
     },
     {
-      "id": "666.004",
-      "author": "asdf",
-      "content": "asdf",
-      "profile_url": "https://picsum.photos/id/1/50/50",
-      "createdAt": "2022-03-02"
-    },
-    {
-      "id": "50.250",
-      "author": "asdfasdf",
-      "content": "asdfasdf",
-      "profile_url": "https://picsum.photos/id/1/50/50",
-      "createdAt": "2022-03-02"
-    },
-    {
       "id": "863.792",
       "author": "진현덕",
       "content": "asdfasdf",
@@ -162,18 +148,39 @@
       "createdAt": "2022-03-04"
     },
     {
-      "id": "794.887",
-      "author": "진현덕",
-      "content": "asdfasdf",
+      "id": 444,
+      "author": "asdfsdfgsdfwwerwer",
+      "content": "sdfgcbvbbvbqwertqewr",
+      "profile_url": "https://picsum.photos/id/5/50/50",
+      "createdAt": "2022-03-02"
+    },
+    {
+      "id": 835,
+      "author": "진현덕43225",
+      "content": "adsfasdfasd2342342342",
       "profile_url": "https://picsum.photos/id/1/50/50",
       "createdAt": "2022-03-02"
     },
     {
-      "id": "552.115",
-      "author": "도기eeeee",
-      "content": "asdfadsf",
-      "profile_url": "https://picsum.photos/id/1/50/50",
-      "createdAt": "2022-03-04"
+      "id": 468,
+      "author": "뉴진스",
+      "content": "cache",
+      "profile_url": "https://picsum.photos/id/5/50/50",
+      "createdAt": "2023-01-20"
+    },
+    {
+      "id": 614,
+      "author": "asdf",
+      "content": "43513135",
+      "profile_url": "https://picsum.photos/id/4/50/50",
+      "createdAt": "2023-01-17"
+    },
+    {
+      "id": 356,
+      "author": "222222",
+      "content": "333333333",
+      "profile_url": "https://picsum.photos/id/5/50/50",
+      "createdAt": "2023-01-17"
     }
   ]
 }

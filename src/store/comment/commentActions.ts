@@ -25,11 +25,16 @@ export const fetchComments = createAsyncThunk(
 export const postComment = createAsyncThunk(
   "commentSlice/postComment",
   async (inputValues: InputValues) => {
+    const profile_url =
+      inputValues.profile_url.length > 0
+        ? inputValues.profile_url
+        : "https://picsum.photos/id/1/50/50";
+
     const response = await axios.post(`${BASE_URL}/comments`, {
-      id: (Math.random() * 1000).toFixed(3),
+      id: Number((Math.random() * 1000).toFixed(0)),
       author: inputValues.author,
       content: inputValues.content,
-      profile_url: "https://picsum.photos/id/1/50/50",
+      profile_url,
       createdAt: inputValues.createdAt,
     });
     return response.data;

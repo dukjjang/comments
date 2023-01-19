@@ -1,14 +1,15 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SystemError } from "../interfaces";
-import { AppDispatch, RootState } from "../store";
-import {
-  fetchComments,
-  fetchTotalComments,
-} from "../store/comment/commentThunks";
+
+import { SystemError } from "interfaces";
+import { AppDispatch, RootState } from "store";
 import CommentForm from "./CommentForm";
 import CommentItem from "./CommentItem";
 import Pagination from "./Pagination";
+import {
+  fetchComments,
+  fetchTotalComments,
+} from "store/comment/commentActions";
 
 const Comments = () => {
   const dispatch = useDispatch<AppDispatch>();

@@ -6,7 +6,7 @@ import {
   deleteComment,
   postComment,
   putComment,
-} from "./commentThunks";
+} from "./commentActions";
 
 export interface CommentState {
   comments: Comment[];
@@ -63,26 +63,24 @@ export const commentSlice = createSlice({
     setCurrentPage(state, action) {
       state.currentPage = action.payload;
     },
-    setPageSection(state, action) {
-      if (action.payload === "next") {
-        state.currentSection++;
-        console.log("section", state.currentSection);
-        state.currentPage = (state.currentSection - 1) * state.pageCount + 1;
+    nextPage(state) {
+      state.currentPage += 1;
+      if (state.currentPage === state.currentSection * state.pageCount + 1) {
+        state.firstPage = state.currentPage;
+        state.lastPage =
+          state.currentSection < state.totalSection
+            ? state.currentPage + 4
+            : state.totalPage;
+        state.currentSection += 1;
       }
-      if (action.payload === "prev" && state.currentSection > 1) {
-        state.currentSection--;
-        state.currentPage =
-          state.currentSection * state.pageCount - (state.pageCount - 1);
+    },
+    prevPage(state) {
+      state.currentPage -= 1;
+      if (state.currentPage === (state.currentSection - 1) * state.pageCount) {
+        state.firstPage = state.currentPage - 4;
+        state.lastPage = state.currentPage;
+        state.currentSection -= 1;
       }
-      state.lastPage =
-        state.currentSection * state.pageCount > state.totalPage
-          ? state.totalPage
-          : state.currentSection * state.pageCount;
-
-      state.firstPage =
-        state.currentSection === 1
-          ? 1
-          : state.currentSection * state.pageCount - state.pageCount + 1;
     },
   },
 
@@ -124,7 +122,12 @@ export const commentSlice = createSlice({
   },
 });
 
-export const { setInputValues, editComment, setCurrentPage, setPageSection } =
-  commentSlice.actions;
+export const {
+  setInputValues,
+  editComment,
+  nextPage,
+  prevPage,
+  setCurrentPage,
+} = commentSlice.actions;
 
 export default commentSlice.reducer;
