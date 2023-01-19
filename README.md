@@ -4,7 +4,6 @@
 
 
 
-
 ## 사용한 기술
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -18,6 +17,53 @@
 - redux toolkit을 활용한 state management
 - redux thunk 미들웨어를 활용한 비동기 처리
 - pagination 기능구현 
+
+
+## 폴더구조 
+```
+📦 src
+├─ .gitignore
+├─ README.md
+├─ db.json
+├─ package.json
+├─ postcss.config.js
+├─ public
+│  ├─ favicon.ico
+│  ├─ index.html
+│  ├─ logo192.png
+│  ├─ logo512.png
+│  ├─ manifest.json
+│  └─ robots.txt
+├─ server
+│  └─ db.json
+├─ src
+│  ├─ App.tsx
+│  ├─ components
+│  │  ├─ CommentForm.tsx
+│  │  ├─ CommentItem.tsx
+│  │  ├─ Comments.tsx
+│  │  └─ Pagination.tsx
+│  ├─ constants
+│  │  └─ index.tsx
+│  ├─ index.css
+│  ├─ index.tsx
+│  ├─ interfaces
+│  │  └─ index.ts
+│  ├─ pages
+│  │  └─ Home.tsx
+│  └─ store
+│     ├─ commentSlice
+│     │  ├─ actions.ts
+│     │  ├─ extraReducers.ts
+│     │  ├─ index.ts
+│     │  └─ reducers.ts
+│     └─ index.ts
+├─ tailwind.config.js
+├─ tsconfig.json
+└─ yarn.lock
+```
+
+
 
 ---
 
